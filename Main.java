@@ -19,7 +19,7 @@ public class Main {
 
         do {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("|----------------- Escolha uma opção --------------------|");
+            System.out.println("\n|----------------- Escolha uma opção --------------------|");
             System.out.println("| 1 - Adicionar dinossauro                               |");
             System.out.println("| 2 - Pesquisar dinossauro por ID                        |");
             System.out.println("| 3 - Verificar quantidade de dinossauro por tipo        |");
@@ -48,7 +48,7 @@ public class Main {
 
                     System.out.println("Entre com a raça do dinossauro:");
                     String nomeRaca = scanner.next();
-                    
+
                     //decidi não pedir o ID pois achamos que colocar o ID automaticamente seria melhor
 
                     cadastroDinossauro.cadastroDinossauro(nomeRaca, tipo, categoria, peso);
@@ -58,7 +58,12 @@ public class Main {
                     System.out.println("Pesquisar dinossauro por ID: ");
                     System.out.println("Entre com o ID: ");
                     int idDinossauro = scanner.nextInt();
-                    System.out.println(cadastroDinossauro.pesquisarDinossauro(idDinossauro));
+                    Dinossauro dino = cadastroDinossauro.pesquisarDinossauro(idDinossauro);
+                    if (dino != null){
+                        System.out.println(dino.toString());
+                    }else{
+                        System.out.println("Não há dinossauro cadastrado com esse ID");
+                    }
                     break;
 
                 case 3:
@@ -103,9 +108,9 @@ public class Main {
                     break;
 
                 case 8:
-                    //cadastroDinossauro.zonasPerigosas();
-
+                    System.out.println(cadastroDinossauro.zonasPerigosas());
                     break;
+
                 case 9:
                     String nomesDinos[] = new String[50];
                     for (int i = 0; i < cadastroDinossauro.cadastroDinossauros.length; i++){
@@ -116,10 +121,10 @@ public class Main {
                     }
 
                     cadastroDinossauro.dinoComMaisVogais(nomesDinos);
-
                     break;
+
                 case 10:
-                    System.out.println("Pesquisando todos os dinossauros..\n");
+                    System.out.println("\nPesquisando todos os dinossauros..");
                     cadastroDinossauro.pesquisarTodosDinossauros();
                     break;
 

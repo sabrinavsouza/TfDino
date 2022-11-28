@@ -2,6 +2,8 @@
 comment0.target=CadastroDinossauro
 comment1.params=nomeRaca\ tipo\ categoria\ peso
 comment1.target=void\ cadastroDinossauro(java.lang.String,\ int,\ int,\ double)
+comment10.params=nomesDinos
+comment10.target=void\ dinoComMaisVogais(java.lang.String[])
 comment2.params=id
 comment2.target=Dinossauro\ pesquisarDinossauro(int)
 comment2.text=\ Metodo\ sora\r\n\r\n\ \ \ \ public\ CadastroDinossauro()\ {\r\n\ \ \ \ cadastroDinossauros\ \=\ new\ Dinossauro[50];\r\n\ \ \ \ proximaPosicao\ \=\ -1;\ //evitar\ \u201Cout\ of\ range\u201D\ nos\ metodos\r\n\ \ \ \ }\r\n\r\n\ \ \ \ public\ boolean\ adicionarDinossauro(Dinossauro\ dino)\ {\r\n\ \ \ \ if\ (proximaPosicao\ +\ 1\ <\ cadastroDinossauros.length)\ {\ //pq\ comeca\ com\ -1\r\n\ \ \ \ proximaPosicao++;\r\n\ \ \ \ cadastroDinossauros[proximaPosicao]\ \=\ dino;\r\n\ \ \ \ return\ true;\r\n\ \ \ \ }\ else\ {\r\n\ \ \ \ return\ false;\r\n\ \ \ \ }\r\n\ \ \ \ }\r\n
@@ -17,7 +19,6 @@ comment7.params=
 comment7.target=void\ pesquisarTodosDinossauros()
 comment8.params=velocidadeDino\ dinoBunker\ humanoBunker
 comment8.target=boolean\ tempoDeFuga(double,\ double,\ double)
-comment9.params=nomesDinos
-comment9.target=void\ dinoComMaisVogais(java.lang.String[])
-comment9.text=\r\n\r\n\ \ \ \ public\ String\ zonasPerigosas()\ {\r\n\ \ \ \ String\ zona;\r\n\ \ \ \ int\ parque\ [][]\ \=\ new\ int[150][150];\r\n\r\n\r\n\ \ \ \ return\ zona;\r\n\ \ \ \ }\r\n
-numComments=10
+comment9.params=
+comment9.target=java.lang.String\ zonasPerigosas()
+numComments=11

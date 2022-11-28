@@ -1,10 +1,12 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class CadastroDinossauro {
     Dinossauro[] cadastroDinossauros = new Dinossauro[50];
-    
+
     //Modifiquei o metodo cadastroDinossauro pois estava dando erro, mantive o original comentado
-    
+
     public void cadastroDinossauro(String nomeRaca, int tipo, int categoria, double peso){
         //esse for vai percorrer o array e irá colocar o dinossauro na primeira posição que estiver vazia
         for(int i = 0; i < cadastroDinossauros.length; i++) {
@@ -38,9 +40,8 @@ public class CadastroDinossauro {
 
     public Dinossauro pesquisarDinossauro(int id) {
         //Troquei o proximaPosição pelo cadastroDinossauro.length porque fica melhor na minha logica
-        // Percorre todo o array e vai mostrar aquele que for o ID igual ao pesquisado
         for (int i = 0; i < cadastroDinossauros.length; i++) {
-            if (cadastroDinossauros[i] != null) { 
+            if (cadastroDinossauros[i] != null) {
                 if (cadastroDinossauros[i].getIdDinossauro() == id) {
                     return cadastroDinossauros[i];
                 }
@@ -88,7 +89,7 @@ public class CadastroDinossauro {
                     System.out.println("pp: " + pp + "\nmp: " + mp + "\ngp: " + gp + "\n");
                     break;
                 }
-                
+
             case 2: {
                     System.out.println("Herbivoro: ");
                     //ocorre o mesmo que em cima, porém verificando quando for herbivoro
@@ -114,10 +115,10 @@ public class CadastroDinossauro {
                     System.out.println("pp: " + pp + "\nmp: " + mp + "\ngp: " + gp + "\n");
                     break;
                 }
-                
-                default: 
-                    System.out.print("\nOpção inválida.\n");
-                    break;
+
+            default: 
+                System.out.print("\nOpção inválida.\n");
+                break;
         }
     }
 
@@ -178,42 +179,88 @@ public class CadastroDinossauro {
         }
     }
 
-    /*
-
     public String zonasPerigosas() {
-    String zona;
-    int parque [][] = new int[150][150];
+        Random random = new Random();
+        String zona;
+        int[][] parque = new int[150][150];
+        int quantidadeDinossauroSul = 0;
+        int quantidadeDinossauroNorte = 0;
 
+        for (int i = 0; i < 150; i++) {
+            for (int j = 0; j < 150; j++) {
+                parque[i][j] = 99;
+            }
+        }
+        int linha;
+        int coluna;
 
-    return zona;
-    }
-     */
+        for (int i = 0; i < cadastroDinossauros.length; i++) {
+            if (cadastroDinossauros[i] != null) {
+                linha = random.nextInt(150);
+                coluna = random.nextInt(150);
 
-    public void dinoComMaisVogais(String[] nomesDinos) {
+                parque[linha][coluna] = cadastroDinossauros[i].getIdDinossauro();
+            }
 
-        String[] nomesDinosOrdenada = new String[50];
-        int qntVogaisI = 0;
-        int qntVogaisJ = 0;
+        }
 
-        for (int i = 0; i < nomesDinos.length; i++){
-            for (int j = 0; j < nomesDinos.length; j++){
-
-                if (nomesDinos[i] != null && nomesDinos[j] != null){
-
-                    for (int k = 0; k < nomesDinos[i].length(); k++ ){
-                        if (nomesDinos[i].charAt(k) == 'a' || nomesDinos[i].charAt(k) == 'e' || nomesDinos[i].charAt(k) == 'i' || nomesDinos[i].charAt(k) == 'o' || nomesDinos[i].charAt(k) == 'u') {
-                            qntVogaisI++;
-                        }
-                    }
-
-                    for (int k = 0; k < nomesDinos[j].length(); k++ ){
-                        if (nomesDinos[j].charAt(k) == 'a' || nomesDinos[j].charAt(k) == 'e' || nomesDinos[j].charAt(k) == 'i' || nomesDinos[j].charAt(k) == 'o' || nomesDinos[j].charAt(k) == 'u') {
-                            qntVogaisJ++;
-                        }
+        for (int i = 75; i < 150; i++) {
+            for (int j = 0; j < 150; j++) {
+                if (parque[i][j] != 99) {
+                    if(pesquisarDinossauro(parque[i][j]) != null && pesquisarDinossauro(parque[i][j]).getTipo() == 1){
+                        quantidadeDinossauroNorte ++;
                     }
                 }
             }
         }
+
+        for (int i = 0; i < 75; i++) {
+            for (int j = 0; j < 150; j++) {
+                if (parque[i][j] != 99) {
+                    if(pesquisarDinossauro(parque[i][j]) != null && pesquisarDinossauro(parque[i][j]).getTipo() == 1){
+                        quantidadeDinossauroSul ++;
+                    }
+                }
+            }
+        }
+        if (quantidadeDinossauroNorte > quantidadeDinossauroSul){
+            return "Zona norte é a mais perigosa";
+        }else if (quantidadeDinossauroSul > quantidadeDinossauroNorte){
+            return "Zona sul é a mais perigosa";
+        }else {
+            return "Os dinossauros carnivoros estão distribuidos igualmente pelo parque";
+        }
+
+    }
+
+    public void dinoComMaisVogais(String[] nomesDinos) {
+        int maiorQntVogais = 0;
+        int qntVogais = 0;
+        ArrayList<String> dinoComMaisvogais = new ArrayList<>();
+
+        for (int i = 0; i < cadastroDinossauros.length; i++) {
+            if (cadastroDinossauros[i] != null) {
+                String nome = cadastroDinossauros[i].getNomeRaca();
+                System.out.println("nome: " + nome);
+                qntVogais = 0;
+                for (int j = 0; j < nome.length(); j++) {
+                    if (nome.charAt(j) == 'a' || nome.charAt(j) == 'e' || nome.charAt(j) == 'i' || nome.charAt(j) == 'o' || nome.charAt(j) == 'u') {
+                        qntVogais++;
+
+                    } else {
+                    }
+                }
+                if (qntVogais > maiorQntVogais) {
+                    maiorQntVogais = qntVogais;
+                    dinoComMaisvogais.removeAll(dinoComMaisvogais);
+                    dinoComMaisvogais.add(cadastroDinossauros[i].getNomeRaca());
+                } else if (qntVogais == maiorQntVogais) {
+                    dinoComMaisvogais.add(cadastroDinossauros[i].getNomeRaca());
+                }
+            }
+        }
+        Collections.sort(dinoComMaisvogais);//metodo da classe collections para ordenar o array de forma crescente
+
+        System.out.println("O dinossauro com maior quantidade de vogais é o: " + dinoComMaisvogais);
     }
 }
-
