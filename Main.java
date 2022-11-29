@@ -32,17 +32,34 @@ public class Main {
             System.out.println("| 10- Pesquisar todos os dinossauros                     |");
             System.out.println("| 0 - Sair                                               |");
             System.out.println("|________________________________________________________|");
-            option = scanner.nextInt();
+
+            String opt = scanner.next();
+
+            if(opt.equals("0") || opt.equals("1") || opt.equals("2") || opt.equals("3") || opt.equals("4") || opt.equals("5") || opt.equals("6") || opt.equals("7") || opt.equals("8") || opt.equals("9") || opt.equals("10")){
+                option = Integer.parseInt(opt);
+            }else{
+                System.out.println("Opção invalida. Tente novamente.");
+                menu();
+            }
 
             switch (option) {
                 case 1: //opção que chama o método que cria o dinossauro
                     System.out.println("------------- CRIAÇÃO DE DINOSSAURO -------------");
+                    
                     System.out.println("Entre com o tipo do dinossauro (1 - carnívoro / 2 - herbívoro):");
                     int tipo = scanner.nextInt();
-
+                    if (tipo != 1 && tipo != 2){
+                        System.out.println ("Opção inválida. Inicie o cadastro novamente.");
+                        menu();
+                    }
+                    
                     System.out.println("Entre com o tamanho do dinossauro (1 - PP / 2 - MP / 3 - GP):"); //mudamos o 'categoria' para 'tamanho' quando o usuario interage para ficar menos confuso
                     int categoria = scanner.nextInt();
-
+                    if (categoria != 1 && categoria != 2 && categoria != 3){
+                        System.out.println ("Opção inválida. Inicie o cadastro novamente.");
+                        menu();
+                    }
+                    
                     System.out.println("Entre com o peso do dinossauro:");
                     double peso = scanner.nextInt();
 
@@ -72,9 +89,9 @@ public class Main {
                     break;
 
                 case 4: //pesquisa o tamanho dos dinossauros por tipo de alimentação
-                    System.out.println("Qual tipo você quer pesquisar? (1 - carnívoro / 2 - herbívoro");
+                    System.out.println("Qual tipo você quer pesquisar? (1 - carnívoro / 2 - herbívoro)");
                     tipo = scanner.nextInt();
-                    System.out.println("Qual tamanho você quer pesquisar? (1 - PP / 2 - MP / 3 - GP");
+                    System.out.println("Qual tamanho você quer pesquisar? (1 - PP / 2 - MP / 3 - GP)");
                     categoria = scanner.nextInt();
                     cadastroDinossauro.pesoPesado(tipo, categoria);
                     break;
@@ -130,13 +147,9 @@ public class Main {
                     System.out.print("Programa encerrado!");
                     option = 0;
                     break;
-
-                default: //caso selecione uma opção que não esteja no menu
-                    System.out.println("Opção inválida, tente novamente!\n");
-                    break;
-
             }
 
-        } while (option != 0); //garante que o menu ficará executavel, enquanto a opção não for zero
+        } while (option != 0);//garante que o menu ficará executavel, enquanto a opção não for zero
+
     }
 }

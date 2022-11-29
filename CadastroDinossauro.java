@@ -129,15 +129,19 @@ public class CadastroDinossauro {
 
     public void pesoPesado(int tipo, int categoria) {
         double peso = 0;
-        int idPesado = 0;
+        int idPesado = 99;
 
         for (int i = 0; i < cadastroDinossauros.length; i++) {
-            if (cadastroDinossauros[i] != null && cadastroDinossauros[i].getPeso() > peso && cadastroDinossauros[i].getCategoria() == categoria) { //verifica o peso, e armazena na varivavel o id e o peso do mais pesado
+            if (cadastroDinossauros[i] != null && cadastroDinossauros[i].getPeso() > peso && cadastroDinossauros[i].getTipo() == tipo && cadastroDinossauros[i].getCategoria() == categoria) { //verifica o peso, e armazena na varivavel o id e o peso do mais pesado
                 idPesado = cadastroDinossauros[i].getIdDinossauro(); //guarda o id do mais pesado
                 peso = cadastroDinossauros[i].getPeso(); // guarda o peso para comparação
             }
         }
-        System.out.println("\nO dinossauro mais pesado da categoria " + categoria + " é o: " + cadastroDinossauros[idPesado] + "\n"); //printa o dino mais pesado
+        if(idPesado == 99){
+            System.out.println("Nenhum dinossauro encontrado para esse tipo e essa categoria de peso.");
+        }else{
+            System.out.println("\nO dinossauro mais pesado do tipo " + tipo + " e da categoria de peso " + categoria + " é o: " + cadastroDinossauros[idPesado] + "\n"); //printa o dino mais pesado
+        }
     }
 
     public void qntCarneMensal() {
