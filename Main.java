@@ -35,12 +35,12 @@ public class Main {
             option = scanner.nextInt();
 
             switch (option) {
-                case 1:
+                case 1: //opção que chama o método que cria o dinossauro
                     System.out.println("------------- CRIAÇÃO DE DINOSSAURO -------------");
                     System.out.println("Entre com o tipo do dinossauro (1 - carnívoro / 2 - herbívoro):");
                     int tipo = scanner.nextInt();
 
-                    System.out.println("Entre com o tamanho do dinossauro (1 - PP / 2 - MP / 3 - GP):"); //mudei o 'categoria' para 'tamanho' quando o usuario interage para ficar menos confuso
+                    System.out.println("Entre com o tamanho do dinossauro (1 - PP / 2 - MP / 3 - GP):"); //mudamos o 'categoria' para 'tamanho' quando o usuario interage para ficar menos confuso
                     int categoria = scanner.nextInt();
 
                     System.out.println("Entre com o peso do dinossauro:");
@@ -49,12 +49,11 @@ public class Main {
                     System.out.println("Entre com a raça do dinossauro:");
                     String nomeRaca = scanner.next();
 
-                    //decidi não pedir o ID pois achamos que colocar o ID automaticamente seria melhor
-
+                    //decidimos não pedir o ID pois achamos que colocar o ID automaticamente tornaria uma experiência melhor para o usuário
                     cadastroDinossauro.cadastroDinossauro(nomeRaca, tipo, categoria, peso);
                     break;
 
-                case 2:
+                case 2: //opção que pesquisa o dinossauro por id
                     System.out.println("Pesquisar dinossauro por ID: ");
                     System.out.println("Entre com o ID: ");
                     int idDinossauro = scanner.nextInt();
@@ -66,13 +65,13 @@ public class Main {
                     }
                     break;
 
-                case 3:
+                case 3: //pesquisa quantos dinossauros do tipo carnivoro e herbivoros há cadastrado
                     System.out.println("Qual tipo voce quer pesquisar? (1 - carnívoro / 2 - herbívoro");
                     tipo = scanner.nextInt();
                     cadastroDinossauro.quantidadePorTipo(tipo);
                     break;
 
-                case 4:
+                case 4: //pesquisa o tamanho dos dinossauros por tipo de alimentação
                     System.out.println("Qual tipo você quer pesquisar? (1 - carnívoro / 2 - herbívoro");
                     tipo = scanner.nextInt();
                     System.out.println("Qual tamanho você quer pesquisar? (1 - PP / 2 - MP / 3 - GP");
@@ -80,17 +79,17 @@ public class Main {
                     cadastroDinossauro.pesoPesado(tipo, categoria);
                     break;
 
-                case 5:
+                case 5: //opção para ver o cálculo de carne necessária ao mês para os dinossauros carnívoros cadastrados até o momento
                     cadastroDinossauro.qntCarneMensal();
                     break;
 
-                case 6:
+                case 6: //opção para remover um dinossauro através do seu id
                     System.out.println("Digite o ID do dinossauro que quer remover: ");
                     idDinossauro = scanner.nextInt();
                     cadastroDinossauro.removerDinossauro(idDinossauro);
                     break;
 
-                case 7:
+                case 7: //pesquisa para saber o tempo necessário para uma eventual fuga
                     System.out.println("Digite a velocidade média do dinossauro: ");
                     double velocidadeDino = scanner.nextDouble();
 
@@ -107,11 +106,11 @@ public class Main {
                     }
                     break;
 
-                case 8:
+                case 8: //informa a zona mais perigosa do parque, baseada no local onde os carnívoros estão alocados
                     System.out.println(cadastroDinossauro.zonasPerigosas());
                     break;
 
-                case 9:
+                case 9:// informa o dinossauro que tenha a raça com mais vogais, e caso tenha empate, printa em ordem alfabética
                     String nomesDinos[] = new String[50];
                     for (int i = 0; i < cadastroDinossauro.cadastroDinossauros.length; i++){
                         if(cadastroDinossauro.cadastroDinossauros[i] != null){
@@ -119,16 +118,15 @@ public class Main {
                         }
 
                     }
-
                     cadastroDinossauro.dinoComMaisVogais(nomesDinos);
                     break;
 
-                case 10:
-                    System.out.println("\nPesquisando todos os dinossauros..");
+                case 10: //informa todos os dinossauros cadastrados e os id disponíveis
+                    System.out.println("\nPesquisando todos os dinossauros..\n");
                     cadastroDinossauro.pesquisarTodosDinossauros();
                     break;
 
-                case 0:
+                case 0: //sai da aplicação e zera os id.
                     System.out.print("Programa encerrado!");
                     option = 0;
                     break;

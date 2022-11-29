@@ -1,3 +1,9 @@
+/**
+ * Escreva uma descrição da classe Main aqui.
+ * 
+ * @author (Sabrina Velasque e João Bergallo) 
+ * @version (11/2022)
+ */
 import javax.annotation.processing.Generated;
 
 public class Dinossauro {
